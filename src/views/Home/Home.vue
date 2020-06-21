@@ -8,6 +8,11 @@
     export default {
         name:'',
         props:[''],
+        mounted() {
+           this.$http.get('/home/getData').then(res=>{
+               console.log(res)
+           })
+        },
         data () {
             return {
 
