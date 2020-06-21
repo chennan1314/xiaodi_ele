@@ -6,4 +6,4 @@ Mock.setup({
 })
 
 //首页相关
-Mock.mock(/\/home\/getData/,'get',homeApi.getHomeData)
+Mock.mock(/\/home\/getData/,'get',homeApi.getStatisticalData)

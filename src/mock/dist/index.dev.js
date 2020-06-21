@@ -12,4 +12,4 @@ _mockjs["default"].setup({
 }); //首页相关
 
 
-_mockjs["default"].mock(/\/home\/getData/, 'get', _home["default"].getHomeData);
+_mockjs["default"].mock(/\/home\/getData/, 'get', _home["default"].getStatisticalData);
