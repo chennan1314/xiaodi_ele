@@ -2,10 +2,11 @@
   <div class="header">
     <div class="l-content">
       <el-button
-        type="primary"
+       plain
         icon="el-icon-edit"
         size="mini"
         circle
+        @click="collapseMenu"
       ></el-button>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -44,7 +45,12 @@ export default {
       current: (state) => state.tab.currentMenu,
     }),
   },
-  methods: {},
+  methods: {
+    // 点击后收缩
+    collapseMenu(){
+     this.$store.commit('collapseMenu')
+    }
+  },
 };
 </script>
 

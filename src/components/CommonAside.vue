@@ -2,9 +2,10 @@
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
-    background-color="#33aef0"
+    background-color="pink"
     text-color="#fff"
     active-text-color="#ffd04b"
+    :collapse="isCollage"
   >
     <el-menu-item v-for="item in noChildren" :key="item.id" :index="item.path" @click="clickMenu(item)">
       <i :class="'el-icon-' + item.icon"></i>
@@ -88,6 +89,9 @@ export default {
     hasChildren() {
       return this.asideMenu.filter((item) => item.children);
     },
+    isCollage(){
+      return this.$store.state.tab.isCollapse
+    }
   },
   methods: {
     clickMenu(item) {
@@ -105,4 +109,8 @@ export default {
   height: 100%;
   border: none;
 }
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
 </style>

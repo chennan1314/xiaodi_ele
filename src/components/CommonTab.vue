@@ -6,6 +6,8 @@
       :closable="tag.name !== 'home'"
       :disable-transitions="false"
       @close="handleClose(tag)"
+      @click="changeMenu(tag)"
+      :effect="$route.name===tag.name?'dark':'light'"
     >
       {{ tag.label }}
     </el-tag>
@@ -39,6 +41,11 @@ export default {
     ...mapMutations({
       close: "closeTab",
     }),
+    // 点击后跳转
+    changeMenu(item){
+      this.$router.push({name:item.name})
+      this.$store.commit('selectMenu',item)
+    }
   },
 };
 </script>
@@ -48,6 +55,7 @@ export default {
   padding: 20px;
   .el-tag {
     margin-right: 15px;
+    cursor: pointer;
   }
 }
 </style>

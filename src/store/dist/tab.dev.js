@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   state: {
+    isCollapse: false,
     menu: [],
     currentMenu: null,
     tabsList: [{
@@ -36,6 +37,9 @@ var _default = {
         return item.name === val.name;
       });
       state.tabsList.splice(result, 1);
+    },
+    collapseMenu: function collapseMenu(state) {
+      state.isCollapse = !state.isCollapse;
     }
   },
   actions: {}
