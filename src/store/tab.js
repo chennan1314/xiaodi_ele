@@ -1,3 +1,4 @@
+import Cookie from 'js-cookie'
 export default {
     state: {
         isCollapse: false,
@@ -30,7 +31,46 @@ export default {
         },
         collapseMenu(state) {
             state.isCollapse = !state.isCollapse
-        }
+        },
+        // 动态路由设置
+        setMenu(state, val) {
+            state.menu = val
+            Cookie.set('menu', JSON.stringify(val))
+        },
+        // 清除cookid
+        clearMenu(state) {
+            state.menu = []
+            Cookie.remove('menu')
+        },
+        // 添加
+        addMenu(state, router) {
+            // 查看是否
+            if (!Cookie.get('menu')) {
+                return
+            }
+            let menu = JSON.parse(Cookie.get('menu'))
+            state.menu = menu
+            let currentMenu = [
+                {
+                    path: '/',
+                    component: () => import(`@/views/Mine`),
+                    children: []
+                }
+            ]
+            menu.forEach(item => {
+                if (item.children) {
+                    item.children = item.children.map(item => {
+                        item.component = () => import(`@/views/${item.url}`)
+                        return item
+                    })
+                    currentMenu[0].children.push(...item.children)
+                } else {
+                    item.component = () => import(`@/views/${item.url}`)
+                    currentMenu[0].children.push(item)
+                }
+            })
+            router.addRoutes(currentMenu)
+        },
     },
     actions: {},
 }

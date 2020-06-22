@@ -22,7 +22,7 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人中心</el-dropdown-item>
-          <el-dropdown-item>退出</el-dropdown-item>
+          <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -49,6 +49,12 @@ export default {
     // 点击后收缩
     collapseMenu(){
      this.$store.commit('collapseMenu')
+    },
+    // 点击后退出
+    logout(){
+      this.$store.commit('clearToken')
+      this.$store.commit('clearMenu')
+      location.reload()
     }
   },
 };
